@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySql@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.2">
+    <root id="1"/>
+    <schema id="2" parent="1" name="mysql">
+      <Current>1</Current>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="owl_schema">
+      <Visible>1</Visible>
+    </schema>
+    <schema id="5" parent="1" name="performance_schema"/>
+    <schema id="6" parent="1" name="sys"/>
+    <table id="7" parent="4" name="cardio"/>
+    <table id="8" parent="4" name="exercise"/>
+    <table id="9" parent="4" name="session"/>
+    <table id="10" parent="4" name="strength"/>
+    <table id="11" parent="4" name="user"/>
+    <table id="12" parent="4" name="workout"/>
+    <column id="13" parent="7" name="cardio_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="14" parent="7" name="distance">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="15" parent="7" name="time">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="16" parent="7" name="exercise_id">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="17" parent="7" name="cardio_cardio_id_uindex">
+      <ColNames>cardio_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="18" parent="7" name="cardio_exercise_id_uindex">
+      <ColNames>exercise_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="19" parent="7" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>cardio_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="20" parent="7" name="cardio_cardio_id_uindex">
+      <ColNames>cardio_id</ColNames>
+      <UnderlyingIndexName>cardio_cardio_id_uindex</UnderlyingIndexName>
+    </key>
+    <key id="21" parent="7" name="cardio_exercise_id_uindex">
+      <ColNames>exercise_id</ColNames>
+      <UnderlyingIndexName>cardio_exercise_id_uindex</UnderlyingIndexName>
+    </key>
+    <foreign-key id="22" parent="7" name="cardio_exercise_id_fk">
+      <ColNames>exercise_id</ColNames>
+      <RefSchemaName>owl_schema</RefSchemaName>
+      <RefTableName>exercise</RefTableName>
+      <RefColNames>exercise_id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="23" parent="8" name="exercise_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="24" parent="8" name="workout_id">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="25" parent="8" name="type">
+      <Position>3</Position>
+      <DataType>varchar(8)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="26" parent="8" name="name">
+      <Position>4</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="27" parent="8" name="exercise_exercise_id_uindex">
+      <ColNames>exercise_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="28" parent="8" name="exercise_workout_workout_id_fk">
+      <ColNames>workout_id</ColNames>
+    </index>
+    <key id="29" parent="8" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>exercise_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="30" parent="8" name="exercise_exercise_id_uindex">
+      <ColNames>exercise_id</ColNames>
+      <UnderlyingIndexName>exercise_exercise_id_uindex</UnderlyingIndexName>
+    </key>
+    <foreign-key id="31" parent="8" name="exercise_workout_workout_id_fk">
+      <ColNames>workout_id</ColNames>
+      <RefSchemaName>owl_schema</RefSchemaName>
+      <RefTableName>workout</RefTableName>
+      <RefColNames>workout_id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="32" parent="9" name="session_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="33" parent="9" name="user_id">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="34" parent="9" name="date">
+      <Position>3</Position>
+      <DataType>date|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="35" parent="9" name="workout_id">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="36" parent="9" name="session_session_id_uindex">
+      <ColNames>session_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="37" parent="9" name="session_user_id_uindex">
+      <ColNames>user_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="38" parent="9" name="session_workout_id_uindex">
+      <ColNames>workout_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="39" parent="9" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>session_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="40" parent="9" name="session_session_id_uindex">
+      <ColNames>session_id</ColNames>
+      <UnderlyingIndexName>session_session_id_uindex</UnderlyingIndexName>
+    </key>
+    <key id="41" parent="9" name="session_user_id_uindex">
+      <ColNames>user_id</ColNames>
+      <UnderlyingIndexName>session_user_id_uindex</UnderlyingIndexName>
+    </key>
+    <key id="42" parent="9" name="session_workout_id_uindex">
+      <ColNames>workout_id</ColNames>
+      <UnderlyingIndexName>session_workout_id_uindex</UnderlyingIndexName>
+    </key>
+    <foreign-key id="43" parent="9" name="session_user__fk">
+      <ColNames>user_id</ColNames>
+      <RefSchemaName>owl_schema</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>user_id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <foreign-key id="44" parent="9" name="session_workout_workout_id_fk">
+      <ColNames>workout_id</ColNames>
+      <RefSchemaName>owl_schema</RefSchemaName>
+      <RefTableName>workout</RefTableName>
+      <RefColNames>workout_id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="45" parent="10" name="strength_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="46" parent="10" name="reps">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="47" parent="10" name="sets">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="48" parent="10" name="weight">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="49" parent="10" name="exercise_id">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="50" parent="10" name="strength_exercise_id_uindex">
+      <ColNames>exercise_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="51" parent="10" name="strength_strength_id_uindex">
+      <ColNames>strength_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="52" parent="10" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>strength_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="53" parent="10" name="strength_strength_id_uindex">
+      <ColNames>strength_id</ColNames>
+      <UnderlyingIndexName>strength_strength_id_uindex</UnderlyingIndexName>
+    </key>
+    <key id="54" parent="10" name="strength_exercise_id_uindex">
+      <ColNames>exercise_id</ColNames>
+      <UnderlyingIndexName>strength_exercise_id_uindex</UnderlyingIndexName>
+    </key>
+    <foreign-key id="55" parent="10" name="strength_exercise_id_fk">
+      <ColNames>exercise_id</ColNames>
+      <RefSchemaName>owl_schema</RefSchemaName>
+      <RefTableName>exercise</RefTableName>
+      <RefColNames>exercise_id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="56" parent="11" name="user_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="57" parent="11" name="first_name">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="58" parent="11" name="last_name">
+      <Position>3</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="59" parent="11" name="age">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="60" parent="11" name="weight">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="61" parent="11" name="gender">
+      <Position>6</Position>
+      <DataType>varchar(10)|0</DataType>
+    </column>
+    <column id="62" parent="11" name="password">
+      <Position>7</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="63" parent="11" name="username">
+      <Position>8</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="64" parent="11" name="email">
+      <Position>9</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="65" parent="11" name="user_email_uindex">
+      <ColNames>email</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="66" parent="11" name="user_user_id_uindex">
+      <ColNames>user_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="67" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>user_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="68" parent="11" name="user_user_id_uindex">
+      <ColNames>user_id</ColNames>
+      <UnderlyingIndexName>user_user_id_uindex</UnderlyingIndexName>
+    </key>
+    <key id="69" parent="11" name="user_email_uindex">
+      <ColNames>email</ColNames>
+      <UnderlyingIndexName>user_email_uindex</UnderlyingIndexName>
+    </key>
+    <column id="70" parent="12" name="workout_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="71" parent="12" name="name">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="72" parent="12" name="user_id">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="73" parent="12" name="workout_user_user_id_fk">
+      <ColNames>user_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="74" parent="12" name="workout_workout_id_uindex">
+      <ColNames>workout_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="75" parent="12" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>workout_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="76" parent="12" name="workout_workout_id_uindex">
+      <ColNames>workout_id</ColNames>
+      <UnderlyingIndexName>workout_workout_id_uindex</UnderlyingIndexName>
+    </key>
+    <key id="77" parent="12" name="workout_user_user_id_fk">
+      <ColNames>user_id</ColNames>
+      <UnderlyingIndexName>workout_user_user_id_fk</UnderlyingIndexName>
+    </key>
+    <foreign-key id="78" parent="12" name="workout_user_user_id_fk">
+      <ColNames>user_id</ColNames>
+      <RefSchemaName>owl_schema</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>user_id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+  </database-model>
+</dataSource>
