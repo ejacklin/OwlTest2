@@ -17,6 +17,7 @@
         <setting name="provider-name" value="EclipseLink" />
         <datasource-mapping>
           <factory-entry name="NewPersistenceUnit" value="64f069ef-23a0-4050-b6f3-955ae02260ec" />
+          <factory-entry name="OwlPU" value="e087ffc6-2673-4968-8633-5fdfb31cb958" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/META-INF/persistence.xml" />
       </configuration>

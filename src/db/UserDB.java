@@ -73,33 +73,6 @@ public class UserDB {
 
         }
 
-
-//        for (SessionEntity s : sessions){
-//            Collection<WorkoutEntity> workouts = s.getWorkoutsBySessionId();
-//            for(WorkoutEntity w : workouts){
-//
-//                Collection<ExerciseEntity> exercises = w.getExercisesByWorkoutId();
-//                for(ExerciseEntity e: exercises){
-//                    Collection<CardioEntity> cardios = e.getCardiosByExerciseId();
-//                    for( CardioEntity c : cardios){
-//                        dExercises.add(new Cardio(e.getName(),Integer.toString(c.getTime()),
-//                                Integer.toString(c.getDistance())));
-//                    }
-//                    Collection<StrengthEntity> strengths = e.getStrengthsByExerciseId();
-//                    for(StrengthEntity st : strengths){
-//                        System.out.println(e.getName() + "  " + Integer.toString(st.getReps()) + "  " +
-//                                Integer.toString(st.getWeight())  + "  " + Integer.toString(st.getSets()));
-//                        Strength strength = new Strength(e.getName(),Integer.toString(st.getReps()),
-//                                Integer.toString(st.getWeight()),Integer.toString(st.getSets()));
-//                        dExercises.add(strength);
-//                    }
-//                }
-//                 work = new Workout(w.getName(),dExercises);
-//            }
-//            DateFormat format_date = new SimpleDateFormat("EEE, MMM d, ''yy");
-//            dSessions.add(new Session(format_date.format(s.getDate()),work));
-//        }
-
         return new User(userEntity.getUsername(),userEntity.getPassword(),userEntity.getEmail(),dSessions,dWorkouts);
     }
 
