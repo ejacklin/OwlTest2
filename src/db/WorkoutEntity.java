@@ -17,6 +17,7 @@ public class WorkoutEntity {
     private UserEntity userByUserId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "workout_id", nullable = false)
     public int getWorkoutId() {
         return workoutId;
@@ -68,7 +69,7 @@ public class WorkoutEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "workoutByWorkoutId")
+    @OneToMany(mappedBy = "workoutByWorkoutId",cascade = CascadeType.ALL, orphanRemoval = true)
     public Collection<ExerciseEntity> getExercisesByWorkoutId() {
         return exercisesByWorkoutId;
     }
@@ -77,7 +78,7 @@ public class WorkoutEntity {
         this.exercisesByWorkoutId = exercisesByWorkoutId;
     }
 
-    @OneToMany(mappedBy = "workoutByWorkoutId")
+    @OneToMany(mappedBy = "workoutByWorkoutId",cascade = CascadeType.ALL, orphanRemoval = true)
     public Collection<SessionEntity> getSessionsByWorkoutId() {
         return sessionsByWorkoutId;
     }
@@ -86,7 +87,7 @@ public class WorkoutEntity {
         this.sessionsByWorkoutId = sessionsByWorkoutId;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
     public UserEntity getUserByUserId() {
         return userByUserId;

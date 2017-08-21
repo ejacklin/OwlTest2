@@ -17,6 +17,7 @@ public class SessionEntity {
     private WorkoutEntity workoutByWorkoutId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "session_id", nullable = false)
     public int getSessionId() {
         return sessionId;

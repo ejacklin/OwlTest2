@@ -16,6 +16,7 @@ public class StrengthEntity {
     private ExerciseEntity exerciseByExerciseId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "strength_id", nullable = false)
     public int getStrengthId() {
         return strengthId;

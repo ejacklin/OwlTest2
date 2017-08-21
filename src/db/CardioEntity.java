@@ -15,6 +15,7 @@ public class CardioEntity {
     private ExerciseEntity exerciseByExerciseId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cardio_id", nullable = false)
     public int getCardioId() {
         return cardioId;
@@ -78,8 +79,8 @@ public class CardioEntity {
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "exercise_id", referencedColumnName = "exercise_id", nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "exercise_id", referencedColumnName = "exercise_id", nullable = false )
     public ExerciseEntity getExerciseByExerciseId() {
         return exerciseByExerciseId;
     }

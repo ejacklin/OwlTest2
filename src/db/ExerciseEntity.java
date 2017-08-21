@@ -18,6 +18,7 @@ public class ExerciseEntity {
     private Collection<StrengthEntity> strengthsByExerciseId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "exercise_id", nullable = false)
     public int getExerciseId() {
         return exerciseId;
@@ -81,7 +82,7 @@ public class ExerciseEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "exerciseByExerciseId")
+    @OneToMany(mappedBy = "exerciseByExerciseId",cascade = CascadeType.ALL)
     public Collection<CardioEntity> getCardiosByExerciseId() {
         return cardiosByExerciseId;
     }
@@ -100,7 +101,7 @@ public class ExerciseEntity {
         this.workoutByWorkoutId = workoutByWorkoutId;
     }
 
-    @OneToMany(mappedBy = "exerciseByExerciseId")
+    @OneToMany(mappedBy = "exerciseByExerciseId",cascade = CascadeType.ALL, orphanRemoval = true)
     public Collection<StrengthEntity> getStrengthsByExerciseId() {
         return strengthsByExerciseId;
     }

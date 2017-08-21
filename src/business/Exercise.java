@@ -17,7 +17,7 @@ public class Exercise implements Serializable{
 
     public Exercise(String name){
         this.name = name;
-
+        this.type = type;
     }
 
     public String getName() {

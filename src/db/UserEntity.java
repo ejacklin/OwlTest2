@@ -22,6 +22,7 @@ public class UserEntity {
     private Collection<WorkoutEntity> workoutsByUserId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "user_id", nullable = false)
     public int getUserId() {
         return userId;
@@ -145,7 +146,7 @@ public class UserEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "userByUserId")
+    @OneToMany(mappedBy = "userByUserId",cascade = CascadeType.ALL, orphanRemoval = true)
     public Collection<SessionEntity> getSessionsByUserId() {
         return sessionsByUserId;
     }
@@ -154,7 +155,7 @@ public class UserEntity {
         this.sessionsByUserId = sessionsByUserId;
     }
 
-    @OneToMany(mappedBy = "userByUserId")
+    @OneToMany(mappedBy = "userByUserId",cascade = CascadeType.ALL, orphanRemoval = true)
     public Collection<WorkoutEntity> getWorkoutsByUserId() {
         return workoutsByUserId;
     }
