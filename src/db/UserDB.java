@@ -3,7 +3,7 @@ package db;
 import business.*;
 
 import javax.persistence.EntityManager;
-import java.lang.reflect.Array;
+import javax.persistence.EntityTransaction;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -86,26 +86,39 @@ public class UserDB {
         return new User(userEntity.getUsername(),userEntity.getPassword(),userEntity.getEmail(),dSessions,dWorkouts);
     }
 
-    public void RemoveFromDB(String username){
+    public void Remove(String username){
         em = DBUtil.getEmFactory().createEntityManager();
         UserEntity userEntity = findWithUsername(username);
-        userEntity = em.merge(userEntity);
-        em.getTransaction().begin();
-        em.remove(userEntity);
-        em.flush();
-        em.getTransaction().commit();
-        em.close();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        try {
+            em.remove(em.merge(userEntity));
+            em.flush();
+            trans.commit();
+        } catch (Exception e){
+            System.out.println(e);
+            trans.rollback();
+        } finally {
+            em.close();
+        }
     }
 
 
-    public void InsertIntoDB(UserEntity userEntity){
+    public void Insert(UserEntity userEntity){
 
         em = DBUtil.getEmFactory().createEntityManager();
-        em.getTransaction().begin();
-        em.persist(userEntity);
-        em.flush();
-        em.getTransaction().commit();
-        em.close();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        try {
+            em.persist(userEntity);
+            em.flush();
+            em.getTransaction().commit();
+        } catch (Exception e){
+            System.out.println(e);
+            trans.rollback();
+        } finally {
+            em.close();
+        }
     }
 
     public UserEntity CreateUserEntity(User user){
@@ -184,6 +197,23 @@ public class UserDB {
         return newEntity;
     }
 
+    public void Update(User user){
+        UserEntity userEntity = CreateUserEntity(user);
+        em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        try {
+            em.merge(userEntity);
+            em.flush();
+            em.getTransaction().commit();
+        } catch (Exception e){
+            System.out.println(e);
+            trans.rollback();
+        } finally {
+            em.close();
+        }
+    }
+
     public static UserEntity CreateDenarys(){
         UserEntity userEntity = new UserEntity();
         userEntity.setEmail("dtargaryen@gmail.com");
@@ -252,7 +282,7 @@ public class UserDB {
 
         return userEntity;
     }
-    
+
     public static void main(String[] args){
         UserDB userDB = new UserDB();
         UserEntity user = userDB.findWithUsername("tlanister");
@@ -262,12 +292,12 @@ public class UserDB {
         UserEntity newUserEntity = new UserEntity();
         newUserEntity = userDB.CreateUserEntity(u);
 
-//        userDB.RemoveFromDB("dtargaryen");
+        userDB.Remove("dtargaryen");
 
 
         UserEntity userEntity = UserDB.CreateDenarys();
 
-        userDB.InsertIntoDB(userEntity);
+        userDB.Insert(userEntity);
 
 
 
